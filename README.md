@@ -21,6 +21,7 @@
 **Part B:** Extend FMS with OPA (Open Policy Agent)
 
 ----------------------------------------------------------------------------------------
+<a name="archi"></a>
 ## Architecture & features
 ### General
 - **DOCKER:** The stack includes four containers
@@ -64,6 +65,7 @@
   - car_states
 
 ----------------------------------------------------------------------------------------
+<a name="screenshots"></a>
 ## Screenshots 
 #### Docker starting
 ![plot](./images/docker_1.png)
@@ -81,6 +83,7 @@
 ![plot](./images/penalty_web_1.png)
 
 ----------------------------------------------------------------------------------------
+<a name="challenges"></a>
 ## Challenges
 
 - [**FIXED**] Kafka takes about 20 seconds to spin up. There is no health check in the beginning of each of the microservices, so as they create threads and try to consume/produce, they hang. A workroung was to add a `time.sleep(20)` before 
@@ -89,6 +92,7 @@ https://stackoverflow.com/questions/18234469/python-multithreaded-print-statemen
 - [**FIXED**] Mocking `KafkaProducer.send` in tests
 
 ----------------------------------------------------------------------------------------
+<a name="improvements"></a>
 ## Future improvements 
 - [ ] Better test coverage 
 - [ ] Add timestamp to messages 
@@ -100,6 +104,7 @@ https://stackoverflow.com/questions/18234469/python-multithreaded-print-statemen
 - [ ] Move topics creation from `prepopulator` to `kafka_python` 
 
 ----------------------------------------------------------------------------------------
+<a name="installation"></a>
 ## Installation & setup
 
 ```
@@ -118,6 +123,7 @@ pytest -v --disable-warnings            # in order to disable deprecation warnin
 ```
 
 ----------------------------------------------------------------------------------------
+<a name="kafka"></a>
 ## Apache Kafka setup
 The commands listed below are just mentioned as a reference and also for quick debugging of issues. There is no reason to run them separately. 
 ### Get list of topics 
@@ -149,6 +155,7 @@ docker-compose exec kafka kafka-console-consumer.sh --topic drivers --from-begin
 - https://www.linkedin.com/pulse/local-kafka-setup-using-docker-sandeep-khurana/
 - https://github.com/bitnami/bitnami-docker-kafka
 ----------------------------------------------------------------------------------------
+<a name="testing"></a>
 ## Manual testing
 ### MSA 
 #### Drivers
@@ -183,13 +190,14 @@ Once the containers are up, an HTML page with a bootstrap table is visible in ht
 
 ----------------------------------------------------------------------------------------
 
+<a name="opa"></a>
 ## Part 2 - Open Policy Agent (OPA)
 ### Requirements
 ####  Where can OPA be a good fit for the fictitious FMS in Part A ?
   - HTTP REST API Role-based Access Control 
     - All users can view (GET) their driver records
-    - User Bob is an **superadmin** and has GET/POST/PUT/DELETE acccess to drivers, cars, trips and driver to car assignement records 
-    - User John is a **simple member** (driver) and has access to view (GET) his records or update them (PUT) but not remove them (DELETE). 
+    - User Bob is an **superadmin** and has GET/POST/PUT/DELETE acccess to drivers, cars, trips and driver-to-car assignement records 
+    - User John is a **simple member** (driver) and has access to view (GET) his records or update them (PUT) but not to remove them (DELETE). 
     - User Kate is a **fleet manager** and can manage (PUT/DELETE) car records    
   - Defy and Enforce an authorization policy over **Apache Kafka** topics ([1][1])
     - Restrict consumer access to topics containing Sensitive Information (e.g. the car state containing the exact geo point and the speed of the car)
