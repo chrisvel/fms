@@ -12,6 +12,7 @@
 7. [ Apache Kafka setup ](#apachekafka) 
 8. [ Manual testing ](#testing) 
 9. [ Part 2 - Open Policy Agent (OPA) ](#opa) 
+10. [ Simple OPA Implementation ](#opaexample)
 
 ----------------------------------------------------------------------------------------
 <a name="intro"></a>
@@ -212,6 +213,71 @@ Once the containers are up, an HTML page with a bootstrap table is visible in ht
     The OPA can reside in the MSA system as a sidecar.  
   - Kafka authorization policy enforcer
     _docker-compose_ can spin up an OPA container and connect to Kafka via SSL. 
+
+----------------------------------------------------------------------------------------
+
+<a name="opaexample"></a>
+10. Simple OPA implementation 
+
+> !! The OPA implementation has been pushed to the `feature/opa` branch. !!
+
+In order to experiment with OPA, a container has been added to `docker-compose.yml`:
+
+```
+opa:
+  hostname: opa
+  image: openpolicyagent/opa:0.32.1
+  ports:
+    - 8181:8181
+  command: "run --server --watch /policies"
+  volumes:
+    - ./policies:/policies
+```
+
+and a policy in `./policies/cars.rego`.
+
+The service is available at http://localhost:8181 
+
+In order to verify the policy:
+
+```
+allow {
+	input.method = "GET"
+	input.path = ["cars"]
+  has_role("car_admin")
+}
+
+employees = {
+	"alice": {"roles": {"manager", "car_admin"}},
+	"james": {"roles": {"manager"}},
+	"kelly": {"roles": {"car_admin"}},
+}
+```
+we make some requests: 
+- GET request to `/cars` (`curl http://localhost:5000/cars)`:
+```
+{
+    "message": "You don't have the permission to access the requested resource. It is either read-protected or not readable by the server."
+}
+```
+- GET request to `/cars` as _alice_  (`curl http://localhost:5000/cars -H 'Authorization: alice'`):
+
+```
+[
+    {
+        "id": "1",
+        "model": "Toyota Corolla E12"
+    },
+    {
+        "id": "2",
+        "model": "Honda Civic 2019"
+    },
+    {
+        "id": "3",
+        "model": "Nissan Navaro GT"
+    }
+]
+```
 
 [1]: https://www.openpolicyagent.org/docs/latest/kafka-authorization "Kafka"
 [2]: https://www.openpolicyagent.org/docs/latest/ecosystem/ "OPA Ecosystem"
