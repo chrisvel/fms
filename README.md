@@ -260,6 +260,12 @@ we make some requests:
     "message": "You don't have the permission to access the requested resource. It is either read-protected or not readable by the server."
 }
 ```
+OPA docker console displays as: 
+```
+opa_1  | {"client_addr":"192.168.0.5:33806","level":"info","msg":"Received request.","req_id":1,"req_method":"POST","req_path":"/","time":"2021-09-27T20:54:39Z"}
+msa_1  | [2021-09-27 20:54:39,391] DEBUG in main: OPA result: False
+```
+
 - GET request to `/cars` as _alice_  (`curl http://localhost:5000/cars -H 'Authorization: alice'`):
 
 ```
