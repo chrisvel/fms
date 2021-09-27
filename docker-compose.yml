@@ -1,0 +1,56 @@
+version: "3"
+
+services:
+  msa:
+    build: ./msa
+    ports:
+      - "5000:5000"
+    volumes:
+      - ./msa:/msa
+    depends_on:
+      - kafka
+    environment:
+      BOOTSTRAP_SERVERS: 'kafka:9092'
+
+  msb:
+    build: ./msb
+    volumes:
+      - ./msb:/msb
+    depends_on:
+      - kafka
+    environment:
+      BOOTSTRAP_SERVERS: 'kafka:9092'
+
+  msc:
+    build: ./msc
+    ports:
+      - "5001:5001"
+    volumes:
+      - ./msc:/msc
+    depends_on:
+      - kafka
+    environment:
+      BOOTSTRAP_SERVERS: 'kafka:9092'
+
+  zookeeper:
+    image: 'bitnami/zookeeper:latest'
+    ports:
+      - '2181:2181'
+    environment:
+      ALLOW_ANONYMOUS_LOGIN: yes
+    volumes:
+      - ./zookeeper:/bitnami
+  
+  kafka:
+    image: 'bitnami/kafka:latest'
+    ports:
+      - '9092:9092'
+    environment:
+      - KAFKA_BROKER_ID=1
+      - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+      - ALLOW_PLAINTEXT_LISTENER=yes
+      - KAFKA_ADVERTISED_HOST_NAME=kafka
+    volumes:
+      -  ./kafka:/bitnami/kafka
+    depends_on:
+      - zookeeper

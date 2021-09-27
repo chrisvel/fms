@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>{{mytitle}}</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" integrity="sha512-iBBXm8fW90+nuLcSKlbmrPcLa0OT92xO1BIsZ+ywDWZCvqsWgccV3gFoRBv0z+8dLJgyAHIhR35VZc2oM/gI1w==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootswatch/5.1.1/cosmo/bootstrap.min.css" integrity="sha512-5dkKo/5NC82R3Fe07QSxl//Ho8EIRYpyJFgW0khbqSsM157I47fojmPT9LLIV7WGKzWt4zEFrEUoU2yTFndWnQ==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <style>
+
+    </style>
+  </head>
+  <body class="container">
+    <div class="row mt-5 mb-3 pb-2">
+      <div class="col-12">
+        <h1>Penalties</h1>
+      </div>
+    </div>
+    <hr />
+    <div class="row pt-3">
+      <div class="col-12">
+        {% block content %}
+          <table id="data" class="table table-striped table-bordered w-25 mx-auto">
+            <thead>
+              <tr>
+                <th>Driver ID</th>
+                <th>Penalty score</th>
+              </tr>
+            </thead>
+            <tbody>
+              {% for penalty in penalties %}
+                <tr>
+                  <td>{{ penalty.driver_id }}</td>
+                  <td>{{ penalty.penalty }}</td>
+                </tr>
+              {% endfor %}
+            </tbody>
+          </table>
+        {% endblock %}
+      </div>
+    </div>
+    
+
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.9.2/umd/popper.min.js" referrerpolicy="no-referrer"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.0/dist/js/bootstrap.min.js" integrity="sha384-cn7l7gDp0eyniUwwAZgrzD06kc/tftFf19TOAs2zVinnD/C7E91j9yyk5//jjpt/" crossorigin="anonymous"></script>
+    <footer class="container text-center">
+      <hr>
+      <p><small>Chris Veleris</small></p>
+    </footer>
+  </body>
+</html>
