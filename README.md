@@ -9,7 +9,7 @@
 4. [ Challenges ](#challenges)  
 5. [ Future improvements ](#improvements) 
 6. [ Installation ](#installation) 
-7. [ Apache Kafka setup ](#kafka) 
+7. [ Apache Kafka setup ](#apachekafka) 
 8. [ Manual testing ](#testing) 
 9. [ Part 2 - Open Policy Agent (OPA) ](#opa) 
 
@@ -123,7 +123,7 @@ pytest -v --disable-warnings            # in order to disable deprecation warnin
 ```
 
 ----------------------------------------------------------------------------------------
-<a name="kafka"></a>
+<a name="apachekafka"></a>
 ## Apache Kafka setup
 The commands listed below are just mentioned as a reference and also for quick debugging of issues. There is no reason to run them separately. 
 ### Get list of topics 
