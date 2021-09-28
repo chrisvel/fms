@@ -10,7 +10,7 @@
 5. [ Future improvements ](#improvements) 
 6. [ Installation ](#installation) 
 7. [ Apache Kafka setup ](#apachekafka) 
-8. [ Manual testing ](#testing) 
+8. [ Testing ](#testing) 
 9. [ Part 2 - Open Policy Agent (OPA) ](#opa) 
 10. [ Simple OPA Implementation ](#opaexample)
 
@@ -95,7 +95,6 @@ https://stackoverflow.com/questions/18234469/python-multithreaded-print-statemen
 ----------------------------------------------------------------------------------------
 <a name="improvements"></a>
 ## Future improvements 
-- [ ] Better test coverage 
 - [ ] Add timestamp to messages 
 - [ ] Improve logging 
 - [ ] Add arguments for specific topics and actions to `prepopulate_data.py`
@@ -103,7 +102,8 @@ https://stackoverflow.com/questions/18234469/python-multithreaded-print-statemen
 - [ ] Add keys to Kafka messages for partitioning 
 - [ ] Params validation 
 - [ ] Move topics creation from `prepopulator` to `kafka_python` 
-
+- [ ] Replace all id's with uuid's
+- [ ] Better test coverage 
 ----------------------------------------------------------------------------------------
 <a name="installation"></a>
 ## Installation & setup
@@ -157,8 +157,10 @@ docker-compose exec kafka kafka-console-consumer.sh --topic drivers --from-begin
 - https://github.com/bitnami/bitnami-docker-kafka
 ----------------------------------------------------------------------------------------
 <a name="testing"></a>
-## Manual testing
+## Testing
 ### MSA 
+#### Test coverage 
+![plot](./images/msa_coverage_1.png)
 #### Drivers
 - curl http://127.0.0.1:5000/drivers
 - curl http://127.0.0.1:5000/drivers/1
@@ -185,7 +187,12 @@ docker-compose exec kafka kafka-console-consumer.sh --topic drivers --from-begin
 - curl -X PUT http://127.0.0.1:5000/car_drivers/1 -d "car_id=4321&driver_id=8765"
 - curl -X DELETE http://127.0.0.1:5000/car_drivers/1
 
-### MSC 
+### MSB 
+#### Test coverage 
+![plot](./images/msb_coverage_1.png)
+### MSC
+#### Test coverage 
+![plot](./images/msc_coverage_1.png)
 
 Once the containers are up, an HTML page with a bootstrap table is visible in http://localhost:5001/penalties. The page reflects the NoSQL data and does not auto-refresh.
 

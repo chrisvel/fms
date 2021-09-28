@@ -15,13 +15,13 @@ api = Api(app)
 
 ## Routing
 api.add_resource(DriverList,    '/drivers')
-api.add_resource(Driver,        '/drivers/<driver_id>')
+api.add_resource(Driver,        '/drivers/<int:driver_id>')
 api.add_resource(CarList,       '/cars')
-api.add_resource(Car,           '/cars/<car_id>')
+api.add_resource(Car,           '/cars/<int:car_id>')
 api.add_resource(TripList,      '/trips')
-api.add_resource(Trip,          '/trips/<trip_id>')
+api.add_resource(Trip,          '/trips/<int:trip_id>')
 api.add_resource(CarDriverList, '/car_drivers')
-api.add_resource(CarDriver,     '/car_drivers/<car_driver_id>')
+api.add_resource(CarDriver,     '/car_drivers/<int:car_driver_id>')
 
 if __name__ == '__main__':
   app.run(host="0.0.0.0", port=5000, debug=True)

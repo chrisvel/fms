@@ -7,7 +7,7 @@ from tinydb import TinyDB, Query, where
 db = TinyDB('db.json')
 
 def consume_messages_from_kafka():
-  # try:
+  try:
     print('Starting consumer', flush=True)
     consumer = KafkaConsumer(
       'car_states', 
@@ -26,5 +26,5 @@ def consume_messages_from_kafka():
           speed = car_state['speed']
           db.update({'penalty': str(new_score)}, where('driver_id') == str(car_state['driver_id']))
           print(f'speed: {speed} -- old_score: {old_score} ---- additional score: {penalty_score} ---- new score: {new_score}', flush=True)
-  # except:
-  #   print("Error!!")
+  except:
+    print("Error!!")
