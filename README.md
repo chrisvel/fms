@@ -226,7 +226,7 @@ Once the containers are up, an HTML page with a bootstrap table is visible in ht
 <a name="opaexample"></a>
 10. Simple OPA implementation 
 
-> !! The OPA implementation has been pushed to the `feature/opa` branch. !!
+> !! The OPA implementation has been pushed to the `feature/opa` branch. There's also a [Pull Request](https://github.com/chrisvel/fms/pull/1) with the changes !!
 
 In order to experiment with OPA, a container has been added to `docker-compose.yml`:
 
