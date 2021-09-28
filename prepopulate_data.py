@@ -60,7 +60,7 @@ def clean_up_penalties_db():
     dbfile.write('{}')
   print('\n')
 
-# create_topics()
+create_topics()
 clean_up_penalties_db()
 create_drivers()
 create_cars()
