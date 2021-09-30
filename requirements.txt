@@ -4,7 +4,10 @@
 Faker == 8.14.0
 
 # trg/MSA/main.py: 1
+# trg/MSA/tests/test_car_drivers.py: 5
+# trg/MSA/tests/test_cars.py: 5
 # trg/MSA/tests/test_drivers.py: 5
+# trg/MSA/tests/test_trips.py: 5
 # trg/MSC/main.py: 1
 Flask == 1.1.2
 
@@ -24,15 +27,19 @@ faker_vehicle == 0.2.0
 # trg/MSC/services/kafka.py: 1
 kafka_python == 2.0.2
 
+# trg/MSA/tests/test_car_drivers.py: 2
+# trg/MSA/tests/test_cars.py: 2
 # trg/MSA/tests/test_drivers.py: 2
+# trg/MSA/tests/test_trips.py: 2
 # trg/MSB/tests/test_simulator.py: 1
 # trg/MSC/tests/test_penalty.py: 1
 pytest == 6.1.1
 
+# trg/MSA/main.py: 8
 # trg/prepopulate_data.py: 2
 requests == 2.26.0
 
 # trg/MSC/controllers/penalties.py: 5
-# trg/MSC/main.py: 10
+# trg/MSC/main.py: 9
 # trg/MSC/services/kafka.py: 6
 tinydb == 4.5.2

@@ -54,3 +54,12 @@ services:
       -  ./kafka:/bitnami/kafka
     depends_on:
       - zookeeper
+
+  opa:
+    hostname: opa
+    image: openpolicyagent/opa:0.32.1
+    ports:
+      - 8181:8181
+    command: "run --server --watch /policies"
+    volumes:
+      - ./policies:/policies
